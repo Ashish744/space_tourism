@@ -1127,12 +1127,12 @@
   <div class="hero-slider" id="heroSlider"></div>
 
   <!-- Arrow nav -->
-  <button class="hero-arrow prev" id="heroPrev" aria-label="Previous">
+   <button class="hero-arrow prev" id="heroPrev" aria-label="Previous">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
   </button>
-  <button class="hero-arrow next" id="heroNext" aria-label="Next">
+   <a href="404.html"><button class="hero-arrow next" id="heroNext" aria-label="Next">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-  </button>
+  </button></a>
 
   <!-- Thumbnail card strip -->
   <div class="hero-thumbnails" id="heroThumbs"></div>
@@ -1171,7 +1171,7 @@
         <option>4 Voyagers</option>
       </select>
     </div>
-    <button class="search-btn">Search</button>
+    <a href="404.html" class="search-btn">Search</a>
   </div>
 </div>
 
@@ -1269,7 +1269,7 @@
         <li><span class="check-icon off"></span><span style="opacity:.5">ISS docking access</span></li>
         <li><span class="check-icon off"></span><span style="opacity:.5">EVA spacewalk option</span></li>
       </ul>
-      <button class="pkg-btn">Book Explorer</button>
+      <a href="404.html"> <button class="pkg-btn">  Book Explorer</button> </a>
     </div>
     <div class="pkg-card featured reveal" style="transition-delay:.1s">
       <span class="pkg-badge popular">★ Most Popular</span>
@@ -1288,7 +1288,7 @@
         <li class="active"><span class="check-icon on" style="display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#8B5FF5" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Private EVA spacewalk</li>
         <li><span class="check-icon off"></span><span style="opacity:.5">Lunar trajectory access</span></li>
       </ul>
-      <button class="pkg-btn">Book Voyager</button>
+       <a href="404.html"> <button class="pkg-btn">Book Voyager</button> </a>
     </div>
     <div class="pkg-card reveal" style="transition-delay:.2s">
       <span class="pkg-badge elite">Ultra Elite</span>
@@ -1307,7 +1307,7 @@
         <li class="active"><span class="check-icon on" style="display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#8B5FF5" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Multiple EVA opportunities</li>
         <li class="active"><span class="check-icon on" style="display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#8B5FF5" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>Private lunar approach window</li>
       </ul>
-      <button class="pkg-btn">Join Waitlist</button>
+      <a href="404.html"> <button class="pkg-btn">Join Waitlist</button> </a>
     </div>
   </div>
 </section>
@@ -1475,7 +1475,7 @@
     <span class="section-label">Booking Process</span>
     <h2 class="section-title">Reserve your <em>next orbit</em></h2>
     <p class="section-sub" style="margin:0 auto">Share your preferred destination, travel dates, and mission type. Our team will match you with the best launch window and complete your booking plan.</p>
-    <a href="contact.html" class="btn-primary" style="display:inline-block; margin-top:32px; text-decoration:none;">Start Your Application</a>
+    <a href="404.html" class="btn-primary" style="display:inline-block; margin-top:32px; text-decoration:none;">Start Your Application</a>
   </div>
 </section>
 
@@ -1755,8 +1755,8 @@ window.addEventListener('scroll', () => {
       <h1 class="slide-title">${titleHTML}</h1>
       <div class="slide-sub"><div class="sub-inner">${s.sub}</div></div>
       <div class="slide-actions">
-        <button class="btn-primary" style="background:${s.color}">${s.cta}</button>
-        <button class="btn-outline">${s.outline}</button>
+        <a href="404.html" class="btn-primary" style="background:${s.color}">${s.cta}</a>
+        <a href="404.html" class="btn-outline">${s.outline}</a>
       </div>`;
     slider.appendChild(el);
   });
