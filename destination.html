@@ -48,7 +48,69 @@
     }
     .nav-links { display: flex; gap: 18px; }
     .nav-links a { color: #8B9CC8; }
+    .nav-toggle { display: none; }
+    .nav-toggle-label {
+      display: none;
+      width: 38px;
+      height: 32px;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+    }
+    .nav-toggle-label span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #E8B86D;
+      border-radius: 999px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      bottom: auto;
+      width: 100%;
+      background: rgba(3, 4, 15, 0.96);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px 24px 22px;
+      z-index: 20;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease;
+    }
+    .mobile-menu a {
+      color: #8B9CC8;
+      display: block;
+      padding: 12px 0;
+    }
+    .mobile-menu .mobile-cta {
+      background: #6A3DE8;
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 12px 0;
+    }
+    .nav-toggle:checked ~ .mobile-menu {
+      display: flex;
+      max-height: 420px;
+    }
     .btn { background: #6A3DE8; color: #fff; padding: 10px 18px; border-radius: 6px; }
+    html, body { width: 100%; overflow-x: hidden; }
     .container { max-width: 1100px; margin: 0 auto; padding: 80px 24px; }
     .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
     .card {
@@ -73,7 +135,31 @@
     h1, h2 { font-family: Georgia, serif; }
     h1 { font-size: 52px; margin-bottom: 8px; }
     footer { background: #0A0F25; padding: 48px 24px; color: #8B9CC8; }
-    @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } nav { flex-wrap: wrap; gap: 10px; } }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      nav { flex-wrap: wrap; gap: 10px; position: relative; }
+      .nav-links { display: none; }
+      .btn { display: none; }
+      .btn.mobile-cta { display: block !important; }
+      .nav-toggle-label { display: flex; }
+      .container { padding: 60px 18px; }
+      footer { padding: 60px 18px 32px !important; }
+      footer > div:first-of-type {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+      footer > div:last-of-type {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+      }
+      footer > div:first-of-type > div {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -83,6 +169,12 @@
     <a href="index.html" style="display:flex; align-items:center;">
       <img src="logo (1).webp" alt="CosmosVoyage logo" style="height:68px; width:auto; object-fit:contain; display:block;">
     </a>
+    <input type="checkbox" id="navToggle" class="nav-toggle" />
+    <label for="navToggle" class="nav-toggle-label" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
     <div class="nav-links">
       <a href="destination.html">Destination</a>
       <a href="tourpackages.html">Packages</a>
@@ -91,6 +183,14 @@
       <a href="contact.html">Contact</a>
     </div>
     <a class="btn" href="login.html">Book a Mission</a>
+    <div class="mobile-menu">
+      <a href="destination.html">Destination</a>
+      <a href="tourpackages.html">Packages</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn mobile-cta" href="login.html">Book a Mission</a>
+    </div>
   </nav>
 
   <main class="container">
@@ -193,9 +293,9 @@
         </a>
         <p style="margin-top:18px; font-size:14px; color:#8B9CC8; line-height:1.8; max-width:320px;">Where premium space travel meets precision planning, comfort, and unforgettable views beyond the horizon.</p>
         <div style="display:flex; gap:10px; margin-top:22px;">
-          <a href="#" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.5V9A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5A4.5 4.5 0 0 0 20.9 5.1 7.72 7.72 0 0 0 23 3Z"/></svg></a>
-          <a href="#" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M6 8h12M6 12h12M6 16h8"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg></a>
-          <a href="#" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="404.html" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.5V9A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5A4.5 4.5 0 0 0 20.9 5.1 7.72 7.72 0 0 0 23 3Z"/></svg></a>
+          <a href="404.html" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M6 8h12M6 12h12M6 16h8"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg></a>
+          <a href="404.html" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
         </div>
       </div>
       <div>
@@ -210,19 +310,19 @@
       <div>
         <h4 style="font-family:'Space Mono', monospace; font-size:10px; color:#E8EDFF; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:16px;">Mission</h4>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-          <li><a href="destination.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">ISS Expedition</a></li>
-          <li><a href="destination.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Moon Orbit</a></li>
-          <li><a href="tourpackages.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mars Flyby</a></li>
-          <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Private Charter</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">ISS Expedition</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Moon Orbit</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mars Flyby</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Private Charter</a></li>
         </ul>
       </div>
       <div>
         <h4 style="font-family:'Space Mono', monospace; font-size:10px; color:#E8EDFF; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:16px;">Support</h4>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-          <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Help Center</a></li>
-          <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Booking Process</a></li>
-          <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Safety Info</a></li>
-          <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mission Control</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Help Center</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Booking Process</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Safety Info</a></li>
+          <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mission Control</a></li>
         </ul>
       </div>
       <div>

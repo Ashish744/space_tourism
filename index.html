@@ -91,6 +91,67 @@
   }
   .nav-menu a:hover { color: var(--starlight); }
   .nav-menu a:hover::after { left: 0; right: 0; }
+  .nav-toggle { display: none; }
+  .nav-toggle-label {
+    display: none;
+    width: 38px;
+    height: 32px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+  .nav-toggle-label span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 999px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    background: rgba(3, 4, 15, 0.96);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 24px 22px;
+    z-index: 20;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+  .mobile-menu a {
+    color: var(--moonstone);
+    display: block;
+    padding: 12px 0;
+  }
+  .mobile-menu .mobile-cta {
+    background: var(--violet);
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px 0;
+  }
+  .nav-toggle:checked ~ .mobile-menu {
+    display: flex;
+    max-height: 420px;
+  }
   .nav-cta {
     padding: 11px 28px; font-family: 'DM Sans', sans-serif;
     font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
@@ -828,6 +889,9 @@
     }
     nav.scrolled { padding: 12px 18px; }
     .nav-menu { display: none; }
+    .nav-toggle-label { display: flex; }
+    .nav-cta { display: none; }
+    .nav-cta.mobile-cta { display: block; }
     .nav-cta {
       padding: 10px 16px;
       font-size: 12px;
@@ -926,6 +990,29 @@
       grid-template-columns: 1fr !important;
       gap: 28px !important;
     }
+    .mission-timeline {
+      padding: 80px 18px !important;
+    }
+    .mission-timeline-grid {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+    .mission-step {
+      grid-template-columns: 1fr !important;
+      padding: 18px !important;
+    }
+    .mission-step h3 {
+      font-size: 16px !important;
+      margin-bottom: 8px !important;
+    }
+    .mission-step p {
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+    }
+    .mission-step > div:first-child {
+      width: auto !important;
+      min-width: 0 !important;
+    }
     section[style*="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;"] {
       grid-template-columns: 1fr !important;
       gap: 18px !important;
@@ -987,6 +1074,12 @@
   <a href="index.html" class="nav-logo-link">
     <img src="logo (1).webp" alt="CosmosVoyage logo" style="height:68px; width:auto; display:block; object-fit:contain; filter: drop-shadow(0 0 18px rgba(104, 86, 255, 0.22));">
   </a>
+  <input type="checkbox" id="navToggle" class="nav-toggle" />
+  <label for="navToggle" class="nav-toggle-label" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
   <ul class="nav-menu">
     <li><a href="destination.html">Destinations</a></li>
     <li><a href="tourpackages.html">Tour Packages</a></li>
@@ -995,6 +1088,14 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <a href="login.html" class="nav-cta">Book a Mission</a>
+  <div class="mobile-menu">
+    <a href="destination.html">Destinations</a>
+    <a href="tourpackages.html">Tour Packages</a>
+    <a href="about.html">About Us</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a class="nav-cta mobile-cta" href="login.html">Book a Mission</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -1282,23 +1383,23 @@
 </section>
 
 <!-- NEW SECTION 1: MISSION TIMELINE -->
-<section style="background: var(--deep-navy); padding: 120px 80px;">
-  <div style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: start;">
+<section class="mission-timeline" style="background: var(--deep-navy); padding: 120px 80px;">
+  <div class="mission-timeline-grid" style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: start;">
     <div class="reveal">
       <span class="section-label">Mission Path</span>
       <h2 class="section-title">From <em>training</em> to touchdown</h2>
       <p class="section-sub">Every mission is designed to reduce stress, improve readiness, and make the final launch day feel calm, clear, and unforgettable.</p>
     </div>
-    <div style="display:grid; gap: 18px;">
-      <div class="reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px;">
+    <div class="mission-steps" style="display:grid; gap: 18px;">
+      <div class="mission-step reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px;">
         <div style="font-family:'Space Mono',monospace; color:var(--gold); font-size:12px;">01</div>
         <div><h3 style="font-size:18px; color:var(--starlight); margin-bottom:6px;">Pre-flight wellness</h3><p style="font-size:14px; color:var(--moonstone);">Medical screening, nutrition planning, and private coaching sessions to prepare your body and mind.</p></div>
       </div>
-      <div class="reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px; transition-delay:.1s">
+      <div class="mission-step reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px; transition-delay:.1s">
         <div style="font-family:'Space Mono',monospace; color:var(--gold); font-size:12px;">02</div>
         <div><h3 style="font-size:18px; color:var(--starlight); margin-bottom:6px;">Launch simulation</h3><p style="font-size:14px; color:var(--moonstone);">Full-day rehearsals for ascent, capsule orientation, emergency response, and zero-G movement techniques.</p></div>
       </div>
-      <div class="reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px; transition-delay:.2s">
+      <div class="mission-step reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px; transition-delay:.2s">
         <div style="font-family:'Space Mono',monospace; color:var(--gold); font-size:12px;">03</div>
         <div><h3 style="font-size:18px; color:var(--starlight); margin-bottom:6px;">Mission day & recovery</h3><p style="font-size:14px; color:var(--moonstone);">Post-flight decompression care, memory capture sessions, and a private celebration with your crew.</p></div>
       </div>
@@ -1400,9 +1501,9 @@
       </a>
       <p style="margin-top:18px; font-size:14px; color:#8B9CC8; line-height:1.8; max-width:320px;">Where premium space travel meets precision planning, comfort, and unforgettable views beyond the horizon.</p>
       <div style="display:flex; gap:10px; margin-top:22px;">
-        <a href="#" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.5V9A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5A4.5 4.5 0 0 0 20.9 5.1 7.72 7.72 0 0 0 23 3Z"/></svg></a>
-        <a href="#" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M6 8h12M6 12h12M6 16h8"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg></a>
-        <a href="#" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="404.html" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 12 7.5V9A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5A4.5 4.5 0 0 0 20.9 5.1 7.72 7.72 0 0 0 23 3Z"/></svg></a>
+        <a href="404.html" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><path d="M6 8h12M6 12h12M6 16h8"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg></a>
+        <a href="404.html" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:999px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8B9CC8" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
       </div>
     </div>
     <div>
@@ -1417,19 +1518,19 @@
     <div>
       <h4 style="font-family:'Space Mono', monospace; font-size:10px; color:#E8EDFF; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:16px;">Mission</h4>
       <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-        <li><a href="destination.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">ISS Expedition</a></li>
-        <li><a href="destination.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Moon Orbit</a></li>
-        <li><a href="tourpackages.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mars Flyby</a></li>
-        <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Private Charter</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">ISS Expedition</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Moon Orbit</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mars Flyby</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Private Charter</a></li>
       </ul>
     </div>
     <div>
       <h4 style="font-family:'Space Mono', monospace; font-size:10px; color:#E8EDFF; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:16px;">Support</h4>
       <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
-        <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Help Center</a></li>
-        <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Booking Process</a></li>
-        <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Safety Info</a></li>
-        <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mission Control</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Help Center</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Booking Process</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Safety Info</a></li>
+        <li><a href="404.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Mission Control</a></li>
       </ul>
     </div>
     <div>
@@ -1446,9 +1547,9 @@
   <div style="max-width:1180px; margin:28px auto 0; border-top:1px solid rgba(255,255,255,0.08); padding-top:18px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; font-size:12px; color:#6F7EA7;">
     <p>© 2026 CosmosVoyage. All rights reserved.</p>
     <div style="display:flex; gap:18px;">
-      <a href="#" style="color:#6F7EA7; text-decoration:none;">Privacy</a>
-      <a href="#" style="color:#6F7EA7; text-decoration:none;">Terms</a>
-      <a href="#" style="color:#6F7EA7; text-decoration:none;">Cookies</a>
+      <a href="404.html" style="color:#6F7EA7; text-decoration:none;">Privacy</a>
+      <a href="404.html" style="color:#6F7EA7; text-decoration:none;">Terms</a>
+      <a href="404.html" style="color:#6F7EA7; text-decoration:none;">Cookies</a>
     </div>
   </div>
 </footer>

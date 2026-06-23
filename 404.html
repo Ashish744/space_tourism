@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page Not Found</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:#03040F;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    color:#fff;
+    position:relative;
+}
+
+/* Animated Background */
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+.stars span{
+    position:absolute;
+    display:block;
+    width:4px;
+    height:4px;
+    background:#fff;
+    border-radius:50%;
+    animation:starMove linear infinite;
+}
+
+@keyframes starMove{
+    from{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
+    20%,80%{
+        opacity:1;
+    }
+    to{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+}
+
+/* Content */
+.container{
+    text-align:center;
+    z-index:2;
+    padding:20px;
+}
+
+.error{
+    font-size:180px;
+    font-weight:900;
+    line-height:1;
+    background:linear-gradient(45deg,#6A3DE8,#C9933A);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:float 4s ease-in-out infinite;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.error:hover{
+    transform:scale(1.05);
+    filter:drop-shadow(0 0 25px rgba(106,61,232,.8));
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+h2{
+    font-size:40px;
+    margin:15px 0;
+}
+
+p{
+    color:#9ca3af;
+    max-width:600px;
+    margin:auto;
+    line-height:1.7;
+}
+
+.btns{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 35px;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:600;
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.home{
+    background:#6A3DE8;
+    color:#fff;
+}
+
+.home:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 30px rgba(106,61,232,.4);
+}
+
+.back{
+    border:2px solid #C9933A;
+    color:#C9933A;
+}
+
+.back:hover{
+    background:#C9933A;
+    color:#000;
+    transform:translateY(-6px);
+}
+
+/* Floating Planet */
+.planet{
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6A3DE8,#C9933A);
+    top:10%;
+    right:8%;
+    box-shadow:0 0 60px rgba(106,61,232,.5);
+    animation:planetMove 8s ease-in-out infinite;
+}
+
+.planet::before{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:60px;
+    border:5px solid rgba(255,255,255,.3);
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-20deg);
+}
+
+@keyframes planetMove{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(25px);
+    }
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+    .error{
+        font-size:110px;
+    }
+
+    h2{
+        font-size:28px;
+    }
+
+    .planet{
+        width:140px;
+        height:140px;
+        top:5%;
+        right:-20px;
+    }
+
+    .planet::before{
+        width:200px;
+        height:40px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="planet"></div>
+
+<div class="container">
+    <div class="error">404</div>
+
+    <h2>Lost In Space</h2>
+
+    <p>
+        Oops! The page you're looking for has drifted into another galaxy.
+        Let's get you back on course.
+    </p>
+
+    <div class="btns">
+        <a href="index.html" class="btn home">Go Home</a>
+        <a href="javascript:history.back()" class="btn back">Go Back</a>
+    </div>
+</div>
+
+<script>
+// Generate Stars
+const stars = document.getElementById("stars");
+
+for(let i=0;i<120;i++){
+    const star = document.createElement("span");
+
+    star.style.left = Math.random()*100 + "%";
+    star.style.animationDuration = (5 + Math.random()*10) + "s";
+    star.style.animationDelay = Math.random()*5 + "s";
+
+    stars.appendChild(star);
+}
+
+// Mouse Glow Effect
+document.addEventListener("mousemove",(e)=>{
+    document.body.style.background=
+    `radial-gradient(circle at ${e.clientX}px ${e.clientY}px,
+    rgba(106,61,232,.18),
+    #03040F 30%)`;
+});
+</script>
+
+</body>
+</html>
