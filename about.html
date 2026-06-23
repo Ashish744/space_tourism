@@ -137,10 +137,29 @@
     .stats strong { font-size: 34px; color: #E8B86D; }
     .mission-list { margin-top: 24px; display: grid; gap: 16px; }
     .mission-list article { display: flex; gap: 16px; }
+    .about-section-grid { display: grid; gap: 18px; }
+    .about-section-grid.two-col { grid-template-columns: 1.1fr 0.9fr; }
+    .about-section-grid.three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .about-section-grid.image-text { grid-template-columns: 1.2fr 0.8fr; }
+    .about-card { overflow-wrap: anywhere; word-break: break-word; }
+    .about-card h2 { font-size: clamp(24px, 3.2vw, 32px) !important; line-height: 1.2 !important; }
+    .about-card p { font-size: 14px !important; line-height: 1.7 !important; }
     footer { background: #0A0F25; padding: 48px 24px; color: #8B9CC8; }
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; }
+      .about-hero-copy h1 { font-size: 38px; line-height: 1.05; }
+      .about-hero-copy p { font-size: 15px; }
       .stats { grid-template-columns: 1fr; }
+      .mission-list article { flex-direction: column; gap: 10px; }
+      .about-section-grid.two-col,
+      .about-section-grid.three-col,
+      .about-section-grid.image-text {
+        grid-template-columns: 1fr !important;
+      }
+      .about-image-panel { min-height: 220px !important; }
+      .about-card { padding: 22px; }
+      .about-card h2 { font-size: 22px !important; }
+      .about-card p { font-size: 14px !important; }
       nav { flex-wrap: wrap; gap: 10px; position: relative; }
       .nav-links { display: none; }
       .btn { display: none; }
@@ -195,7 +214,7 @@
   </nav>
 
   <main class="container hero">
-    <section>
+    <section class="about-hero-copy">
       <div class="eyebrow">Who We Are</div>
       <h1>Making space travel feel possible, personal, and unforgettable.</h1>
       <p>CosmosVoyage blends aerospace precision, premium comfort, and human-centered service to offer journeys that go far beyond the ordinary.</p>
@@ -227,22 +246,22 @@
 
   <section style="background: linear-gradient(180deg, rgba(10,15,37,0.98), rgba(13,27,69,0.88)); padding: 0 24px 80px;">
     <div class="container" style="padding: 0;">
-      <div style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:18px; margin-bottom:18px;">
-        <div style="min-height: 320px; overflow:hidden; border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; transition: transform 0.4s ease, border-color 0.4s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(201,147,58,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.1)'"><img src="webp1.webp" alt="Mission image" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-        <div style="min-height: 320px; overflow:hidden; border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; transition: transform 0.4s ease, border-color 0.4s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(106,61,232,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.1)'"><img src="webp2.webp" alt="Mission image" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div class="about-section-grid two-col" style="margin-bottom:18px;">
+        <div class="about-image-panel" style="min-height: 320px; overflow:hidden; border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; transition: transform 0.4s ease, border-color 0.4s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(201,147,58,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.1)'"><img src="webp1.webp" alt="Mission image" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="about-image-panel" style="min-height: 320px; overflow:hidden; border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; transition: transform 0.4s ease, border-color 0.4s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='rgba(106,61,232,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.1)'"><img src="webp2.webp" alt="Mission image" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
       </div>
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;">
-        <article class="about-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+      <div class="about-section-grid three-col" style="gap:18px;">
+        <article class="about-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 24px;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
           <div class="eyebrow">Our Promise</div>
           <h2 style="font-size:32px; margin-top:8px;">Human-first experience</h2>
           <p style="margin-top:12px;">We balance engineering precision with comfort, communication, and the quiet confidence travelers need before launch.</p>
         </article>
-        <article class="about-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <article class="about-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 24px;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
           <div class="eyebrow">Our Crew</div>
           <h2 style="font-size:32px; margin-top:8px;">Experts from every field</h2>
           <p style="margin-top:12px;">Pilots, doctors, scientists, and hospitality specialists work together to make every mission smooth and supported.</p>
         </article>
-        <article class="about-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <article class="about-card" style="transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 24px;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
           <div class="eyebrow">Our Impact</div>
           <h2 style="font-size:32px; margin-top:8px;">Inspiring the next generation</h2>
           <p style="margin-top:12px;">Each mission includes educational content, outreach programs, and moments designed to connect travelers with the world beyond us.</p>
@@ -253,20 +272,20 @@
 
   <section style="background:#03040F; padding: 0 24px 80px;">
     <div class="container" style="padding:0;">
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;">
-        <article class="about-card" style="overflow:hidden; position:relative; transition: transform 0.4s ease, border-color 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(201,147,58,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.08)'">
+      <div class="about-section-grid three-col" style="gap:18px;">
+        <article class="about-card" style="overflow:hidden; position:relative; transition: transform 0.4s ease, border-color 0.4s ease; padding: 24px;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(201,147,58,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.08)'">
           <div style="position:absolute; right:-20px; top:-20px; width:80px; height:80px; background:rgba(201,147,58,0.1); border-radius:50%;"></div>
           <div class="eyebrow">Mission Vision</div>
           <h2 style="font-size:28px; margin-top:8px;">A future we can explore together</h2>
           <p style="margin-top:12px;">Our vision is to make space travel more accessible, inspiring, and deeply personal for every traveler who dreams big.</p>
         </article>
-        <article class="about-card" style="overflow:hidden; position:relative; transition: transform 0.4s ease, border-color 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(106,61,232,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.08)'">
+        <article class="about-card" style="overflow:hidden; position:relative; transition: transform 0.4s ease, border-color 0.4s ease; padding: 24px;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(106,61,232,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.08)'">
           <div style="position:absolute; left:-12px; bottom:-12px; width:60px; height:60px; background:rgba(106,61,232,0.1); border-radius:50%;"></div>
           <div class="eyebrow">Traveler Care</div>
           <h2 style="font-size:28px; margin-top:8px;">Support from start to finish</h2>
           <p style="margin-top:12px;">We guide every guest through medical prep, logistics, and recovery so the entire experience feels confident, calm, and memorable.</p>
         </article>
-        <article class="about-card" style="overflow:hidden; position:relative; transition: transform 0.4s ease, border-color 0.4s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(201,147,58,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.08)'">
+        <article class="about-card" style="overflow:hidden; position:relative; transition: transform 0.4s ease, border-color 0.4s ease; padding: 24px;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='rgba(201,147,58,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(255,255,255,0.08)'">
           <div style="position:absolute; right:10px; bottom:-18px; width:110px; height:110px; background:rgba(201,147,58,0.06); border-radius:50%;"></div>
           <div class="eyebrow">Learning</div>
           <h2 style="font-size:28px; margin-top:8px;">Knowledge that lasts beyond the trip</h2>
@@ -278,8 +297,8 @@
 
   <section style="background:linear-gradient(180deg, rgba(13,27,69,0.9), rgba(10,15,37,0.98)); padding: 0 24px 80px;">
     <div class="container" style="padding:0;">
-      <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:18px; align-items:stretch;">
-        <div style="min-height: 280px; overflow:hidden; border:1px dashed rgba(255,255,255,0.1); border-radius:12px; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"><img src="webp3.webp" alt="Mission campaign" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div class="about-section-grid image-text" style="align-items:stretch;">
+        <div class="about-image-panel" style="min-height: 280px; overflow:hidden; border:1px dashed rgba(255,255,255,0.1); border-radius:12px; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'"><img src="webp3.webp" alt="Mission campaign" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
         <div class="about-card" style="transition: transform 0.4s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
           <div class="eyebrow">Why Guests Return</div>
           <h2 style="font-size:30px; margin-top:8px;">The experience stays with you</h2>

@@ -476,6 +476,11 @@
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+  .partner-card:hover {
+    transform: translateX(6px);
+    border-color: var(--border-accent);
+    background: rgba(106, 61, 232, 0.12);
+  }
 
   /* ── DESTINATIONS ── */
   .destinations-header {
@@ -866,6 +871,60 @@
   .footer-copyright { font-size: 12px; color: rgba(139, 156, 200, 0.4); font-family: 'Space Mono', monospace; }
   .footer-coords { font-size: 11px; color: rgba(139, 156, 200, 0.3); font-family: 'Space Mono', monospace; letter-spacing: 0.06em; }
 
+  /* ── HOME PAGE SECTION LAYOUTS ── */
+  .mission-timeline-section { background: var(--deep-navy); padding: 120px 80px; }
+  .mission-timeline-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: start; }
+  .mission-steps { display: grid; gap: 18px; }
+  .mission-step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 18px;
+    align-items: start;
+    background: rgba(13,27,69,0.72);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 22px;
+  }
+  .partner-section { background: var(--void); padding: 100px 80px; }
+  .partner-grid { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+  .partner-card {
+    background: rgba(13,27,69,0.56);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 14px 12px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--moonstone);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .experience-section { background: var(--deep-navy); padding: 120px 80px; }
+  .experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .experience-card {
+    background: linear-gradient(180deg, rgba(13,27,69,0.9), rgba(10,15,37,0.98));
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 28px 24px;
+    min-height: 220px;
+  }
+  .faq-section { background: var(--void); padding: 120px 80px; }
+  .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; }
+  .faq-stack { display: grid; gap: 14px; }
+  .faq-card {
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 22px 24px;
+    background: rgba(13,27,69,0.55);
+  }
+
   /* ── KEYFRAMES ── */
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
@@ -960,14 +1019,31 @@
       position: static;
       margin-top: 16px;
     }
-    .destinations-grid { grid-template-columns: 1fr; }
+    .destinations-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .dest-card,
+    .pkg-card,
+    .why-item {
+      width: 100%;
+    }
     .dest-card:nth-child(1) { grid-column: span 1; }
     .dest-card:nth-child(1) .dest-img-wrap { height: 280px; }
     .packages-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
       grid-template-columns: 1fr;
       max-width: 100%;
     }
-    .whyus-grid { grid-template-columns: 1fr; gap: 24px; }
+    .whyus-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
     .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
     .gallery-item { grid-column: span 1 !important; height: 180px; }
     .newsletter-section { padding: 80px 18px; }
@@ -992,30 +1068,64 @@
       grid-template-columns: 1fr !important;
       gap: 28px !important;
     }
-    .mission-timeline {
-      padding: 80px 18px !important;
+    .mission-timeline-section {
+      padding: 80px 18px;
     }
     .mission-timeline-grid {
-      grid-template-columns: 1fr !important;
-      gap: 28px !important;
+      grid-template-columns: 1fr;
+      gap: 28px;
     }
     .mission-step {
-      grid-template-columns: 1fr !important;
-      padding: 18px !important;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 18px;
     }
     .mission-step h3 {
-      font-size: 16px !important;
-      margin-bottom: 8px !important;
+      font-size: 16px;
+      margin-bottom: 8px;
     }
     .mission-step p {
-      font-size: 14px !important;
-      line-height: 1.7 !important;
+      font-size: 14px;
+      line-height: 1.7;
     }
     .mission-step > div:first-child {
-      width: auto !important;
-      min-width: 0 !important;
+      width: auto;
+      min-width: 0;
     }
-    section[style*="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;"] {
+    .partner-section {
+      padding: 80px 18px;
+    }
+    .partner-grid {
+      gap: 12px;
+    }
+    .partner-card {
+      padding: 14px 16px;
+      min-height: 44px;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+    }
+    .experience-section {
+      padding: 80px 18px;
+    }
+    .experience-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .experience-card {
+      padding: 24px 18px;
+      min-height: auto;
+    }
+    .faq-section {
+      padding: 80px 18px;
+    }
+    .faq-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .faq-card {
+      padding: 18px 20px;
+    }
+    section[style*="display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;"] {
       grid-template-columns: 1fr !important;
       gap: 18px !important;
     }
@@ -1154,22 +1264,6 @@
     <div class="search-field">
       <label>Launch Date</label>
       <input type="text" placeholder="Select date">
-    </div>
-    <div class="search-field">
-      <label>Duration</label>
-      <select>
-        <option>3 — 7 Days</option>
-        <option>7 — 14 Days</option>
-        <option>14 — 30 Days</option>
-      </select>
-    </div>
-    <div class="search-field">
-      <label>Travelers</label>
-      <select>
-        <option>1 Voyager</option>
-        <option>2 Voyagers</option>
-        <option>4 Voyagers</option>
-      </select>
     </div>
     <a href="404.html" class="search-btn">Search</a>
   </div>
@@ -1385,23 +1479,23 @@
 </section>
 
 <!-- NEW SECTION 1: MISSION TIMELINE -->
-<section class="mission-timeline" style="background: var(--deep-navy); padding: 120px 80px;">
-  <div class="mission-timeline-grid" style="display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: start;">
+<section class="mission-timeline-section">
+  <div class="mission-timeline-grid">
     <div class="reveal">
       <span class="section-label">Mission Path</span>
       <h2 class="section-title">From <em>training</em> to touchdown</h2>
       <p class="section-sub">Every mission is designed to reduce stress, improve readiness, and make the final launch day feel calm, clear, and unforgettable.</p>
     </div>
-    <div class="mission-steps" style="display:grid; gap: 18px;">
-      <div class="mission-step reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px;">
+    <div class="mission-steps">
+      <div class="mission-step reveal">
         <div style="font-family:'Space Mono',monospace; color:var(--gold); font-size:12px;">01</div>
         <div><h3 style="font-size:18px; color:var(--starlight); margin-bottom:6px;">Pre-flight wellness</h3><p style="font-size:14px; color:var(--moonstone);">Medical screening, nutrition planning, and private coaching sessions to prepare your body and mind.</p></div>
       </div>
-      <div class="mission-step reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px; transition-delay:.1s">
+      <div class="mission-step reveal" style="transition-delay:.1s">
         <div style="font-family:'Space Mono',monospace; color:var(--gold); font-size:12px;">02</div>
         <div><h3 style="font-size:18px; color:var(--starlight); margin-bottom:6px;">Launch simulation</h3><p style="font-size:14px; color:var(--moonstone);">Full-day rehearsals for ascent, capsule orientation, emergency response, and zero-G movement techniques.</p></div>
       </div>
-      <div class="mission-step reveal" style="display:grid; grid-template-columns: 80px 1fr; gap: 18px; align-items: start; background: rgba(13,27,69,0.72); border:1px solid var(--border-subtle); border-radius:10px; padding: 22px; transition-delay:.2s">
+      <div class="mission-step reveal" style="transition-delay:.2s">
         <div style="font-family:'Space Mono',monospace; color:var(--gold); font-size:12px;">03</div>
         <div><h3 style="font-size:18px; color:var(--starlight); margin-bottom:6px;">Mission day & recovery</h3><p style="font-size:14px; color:var(--moonstone);">Post-flight decompression care, memory capture sessions, and a private celebration with your crew.</p></div>
       </div>
@@ -1410,58 +1504,58 @@
 </section>
 
 <!-- NEW SECTION 2: PARTNERS -->
-<section style="background: var(--void); padding: 100px 80px;">
+<section class="partner-section">
   <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto 48px;">
     <span class="section-label">Trusted Partners</span>
     <h2 class="section-title">Built with <em>global experts</em></h2>
   </div>
-  <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap: 18px;">
-    <div class="reveal" style="background: rgba(13,27,69,0.56); border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 12px; text-align:center; color:var(--moonstone); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.18em;">NASA ADVISORS</div>
-    <div class="reveal" style="background: rgba(13,27,69,0.56); border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 12px; text-align:center; color:var(--moonstone); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.18em; transition-delay:.05s">ESA PARTNERS</div>
-    <div class="reveal" style="background: rgba(13,27,69,0.56); border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 12px; text-align:center; color:var(--moonstone); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.18em; transition-delay:.1s">AEROSPACE LABS</div>
-    <div class="reveal" style="background: rgba(13,27,69,0.56); border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 12px; text-align:center; color:var(--moonstone); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.18em; transition-delay:.15s">MEDICAL TEAMS</div>
-    <div class="reveal" style="background: rgba(13,27,69,0.56); border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 12px; text-align:center; color:var(--moonstone); font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.18em; transition-delay:.2s">HOTEL PARTNERS</div>
+  <div class="partner-grid">
+    <div class="reveal partner-card">NASA ADVISORS</div>
+    <div class="reveal partner-card" style="transition-delay:.05s">ESA PARTNERS</div>
+    <div class="reveal partner-card" style="transition-delay:.1s">AEROSPACE LABS</div>
+    <div class="reveal partner-card" style="transition-delay:.15s">MEDICAL TEAMS</div>
+    <div class="reveal partner-card" style="transition-delay:.2s">HOTEL PARTNERS</div>
   </div>
 </section>
 
 <!-- NEW SECTION 3: EXPERIENCE -->
-<section style="background: var(--deep-navy); padding: 120px 80px;">
-  <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
-    <div class="reveal" style="background: linear-gradient(180deg, rgba(13,27,69,0.9), rgba(10,15,37,0.98)); border:1px solid var(--border-subtle); border-radius:10px; padding: 36px 28px;">
-      <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.18em; margin-bottom:14px;">Cabin Comfort</div>
-      <h3 style="font-family:'Cormorant Garamond', serif; font-size:32px; color:var(--starlight); margin-bottom:10px;">Private suites</h3>
-      <p style="font-size:14px; color:var(--moonstone); line-height:1.8;">Each cabin includes panoramic windows, memory-safe storage, and personalized service for a calm, premium journey.</p>
+<section class="experience-section">
+  <div class="experience-grid">
+    <div class="reveal experience-card">
+      <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.18em; margin-bottom:12px;">Cabin Comfort</div>
+      <h3 style="font-family:'Cormorant Garamond', serif; font-size:28px; color:var(--starlight); margin-bottom:10px;">Private suites</h3>
+      <p style="font-size:14px; color:var(--moonstone); line-height:1.7;">Each cabin includes panoramic windows, memory-safe storage, and personalized service for a calm, premium journey.</p>
     </div>
-    <div class="reveal" style="background: linear-gradient(180deg, rgba(13,27,69,0.9), rgba(10,15,37,0.98)); border:1px solid var(--border-subtle); border-radius:10px; padding: 36px 28px; transition-delay:.1s">
-      <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.18em; margin-bottom:14px;">Zero-G Dining</div>
-      <h3 style="font-family:'Cormorant Garamond', serif; font-size:32px; color:var(--starlight); margin-bottom:10px;">Chef-crafted meals</h3>
-      <p style="font-size:14px; color:var(--moonstone); line-height:1.8;">A rotating menu of light, nutritious, and beautifully plated dishes designed for every phase of the mission.</p>
+    <div class="reveal experience-card" style="transition-delay:.1s">
+      <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.18em; margin-bottom:12px;">Zero-G Dining</div>
+      <h3 style="font-family:'Cormorant Garamond', serif; font-size:28px; color:var(--starlight); margin-bottom:10px;">Chef-crafted meals</h3>
+      <p style="font-size:14px; color:var(--moonstone); line-height:1.7;">A rotating menu of light, nutritious, and beautifully plated dishes designed for every phase of the mission.</p>
     </div>
-    <div class="reveal" style="background: linear-gradient(180deg, rgba(13,27,69,0.9), rgba(10,15,37,0.98)); border:1px solid var(--border-subtle); border-radius:10px; padding: 36px 28px; transition-delay:.2s">
-      <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.18em; margin-bottom:14px;">Mission Memories</div>
-      <h3 style="font-family:'Cormorant Garamond', serif; font-size:32px; color:var(--starlight); margin-bottom:10px;">Photo & video vault</h3>
-      <p style="font-size:14px; color:var(--moonstone); line-height:1.8;">Every launch, orbit, and landing moment is curated into a premium digital archive for your family and friends.</p>
+    <div class="reveal experience-card" style="transition-delay:.2s">
+      <div style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gold); text-transform:uppercase; letter-spacing:0.18em; margin-bottom:12px;">Mission Memories</div>
+      <h3 style="font-family:'Cormorant Garamond', serif; font-size:28px; color:var(--starlight); margin-bottom:10px;">Photo & video vault</h3>
+      <p style="font-size:14px; color:var(--moonstone); line-height:1.7;">Every launch, orbit, and landing moment is curated into a premium digital archive for your family and friends.</p>
     </div>
   </div>
 </section>
 
 <!-- NEW SECTION 4: FAQ -->
-<section style="background: var(--void); padding: 120px 80px;">
-  <div style="display:grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px;">
+<section class="faq-section">
+  <div class="faq-grid">
     <div class="reveal">
       <span class="section-label">Frequently Asked</span>
       <h2 class="section-title">Questions before <em>lift-off</em></h2>
     </div>
-    <div style="display:grid; gap: 14px;">
-      <div class="reveal" style="border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 24px; background: rgba(13,27,69,0.55);">
+    <div class="faq-stack">
+      <div class="reveal faq-card">
         <h3 style="font-size:16px; color:var(--starlight); margin-bottom:8px;">What happens if weather changes the launch window?</h3>
         <p style="font-size:14px; color:var(--moonstone);">Our team monitors conditions continuously and will notify you immediately with the next confirmed launch slot.</p>
       </div>
-      <div class="reveal" style="border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 24px; background: rgba(13,27,69,0.55); transition-delay:.1s">
+      <div class="reveal faq-card" style="transition-delay:.1s">
         <h3 style="font-size:16px; color:var(--starlight); margin-bottom:8px;">Do travelers need special training before departure?</h3>
         <p style="font-size:14px; color:var(--moonstone);">Yes, every traveler completes a tailored preparation program, including simulations, physical conditioning, and mission briefings.</p>
       </div>
-      <div class="reveal" style="border:1px solid var(--border-subtle); border-radius:8px; padding: 22px 24px; background: rgba(13,27,69,0.55); transition-delay:.2s">
+      <div class="reveal faq-card" style="transition-delay:.2s">
         <h3 style="font-size:16px; color:var(--starlight); margin-bottom:8px;">Can I bring family or friends to the launch site?</h3>
         <p style="font-size:14px; color:var(--moonstone);">Yes, we provide guest access packages for launch-day viewing, hospitality lounges, and secure transport to the site.</p>
       </div>
