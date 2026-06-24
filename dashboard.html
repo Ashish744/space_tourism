@@ -31,6 +31,7 @@
     }
     .nav-links { display: flex; gap: 18px; }
     .nav-links a { color: #8b9cc8; text-decoration: none; }
+    .nav-links a.active, .mobile-menu a.active { color: #fff; font-weight: 600; }
     .btn {
       background: #6a3de8;
       color: #fff;
@@ -131,7 +132,7 @@
     </a>
     <div class="nav-links">
       <a href="dashboard.html">Dashboard</a>
-      <a href="contact.html">Support</a>
+      <a href="404.html">Support</a>
     </div>
     <a class="btn" href="index.html">Logout</a>
   </nav>
@@ -304,6 +305,21 @@
       });
     }
     setupFooterSignup();
+
+    function setActiveNav() {
+      const currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('nav .nav-links a[href], .mobile-menu a[href]').forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#')) return;
+        const targetPage = (new URL(href, window.location.href).pathname.split('/').pop() || 'index.html').toLowerCase();
+        if (targetPage === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('load', setActiveNav);
+    setActiveNav();
   </script>
 </body>
 </html>

@@ -91,6 +91,16 @@
   }
   .nav-menu a:hover { color: var(--starlight); }
   .nav-menu a:hover::after { left: 0; right: 0; }
+  .nav-menu a.active,
+  .mobile-menu a.active {
+    color: var(--starlight);
+    font-weight: 600;
+  }
+  .nav-menu a.active::after,
+  .mobile-menu a.active::after {
+    left: 0;
+    right: 0;
+  }
   .nav-toggle { display: none; }
   .nav-toggle-label {
     display: none;
@@ -336,6 +346,8 @@
     color: var(--starlight); background: var(--violet);
     border: none; border-radius: 4px; cursor: pointer;
     position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-flex; align-items: center; justify-content: center;
+    text-decoration: none;
   }
   .btn-primary::before {
     content: ''; position: absolute; inset: 0;
@@ -350,6 +362,8 @@
     color: var(--starlight); background: transparent;
     border: 1px solid rgba(232, 237, 255, 0.25); border-radius: 4px; cursor: pointer;
     transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+    display: inline-flex; align-items: center; justify-content: center;
+    text-decoration: none;
   }
   .btn-outline:hover {
     border-color: var(--violet-light); background: rgba(106, 61, 232, 0.08);
@@ -673,6 +687,7 @@
     border: 1px solid var(--border-accent); color: var(--violet-light);
     background: rgba(106, 61, 232, 0.08);
     transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
   }
   .pkg-btn:hover { background: var(--violet); color: var(--starlight); transform: translateY(-1px); }
   .pkg-card.featured .pkg-btn {
@@ -2047,6 +2062,21 @@ document.querySelectorAll('.btn-primary, .nav-cta, .search-btn, .newsletter-subm
     btn.style.transform = '';
   });
 });
+
+function setActiveNav() {
+  const currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  document.querySelectorAll('nav .nav-menu a[href], .mobile-menu a[href]').forEach(link => {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    const targetPage = (new URL(href, window.location.href).pathname.split('/').pop() || 'index.html').toLowerCase();
+    if (targetPage === currentPage) {
+      link.classList.add('active');
+    }
+  });
+}
+window.addEventListener('load', setActiveNav);
+setActiveNav();
 </script>
 </body>
 </html>
