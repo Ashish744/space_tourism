@@ -168,6 +168,19 @@
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       padding: 28px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .contact-grid-3,
+    .contact-grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+    .contact-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .contact-grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     input, textarea {
       width: 100%;
@@ -189,7 +202,20 @@
     h1 { font-family: Georgia, serif; font-size: 52px; margin-bottom: 10px; }
     footer { background: #0A0F25; padding: 48px 24px; color: #8B9CC8; }
     @media (max-width: 768px) {
-      .contact-wrap { grid-template-columns: 1fr; }
+      .contact-wrap {
+        grid-template-columns: 1fr;
+        grid-auto-flow: row;
+      }
+      .contact-grid-3,
+      .contact-grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+      .contact-wrap > .panel:first-child {
+        order: 1;
+      }
+      .contact-wrap > .panel:last-child {
+        order: 2;
+      }
       nav { flex-wrap: wrap; gap: 10px; }
       .nav-menu { display: none; }
       .nav-cta { display: none; }
@@ -333,7 +359,7 @@ img {
 
   <section style="background:#0A0F25; padding: 0 24px 80px;">
     <div class="container" style="padding:0;">
-      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:18px;">
+      <div class="contact-grid-3">
         <article class="panel" style="transition: transform 0.35s ease, box-shadow 0.35s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
           <div style="color:#C9933A; font-size:12px; text-transform:uppercase;">Support Hours</div>
           <h2 style="font-size:32px; margin-top:8px;">24/7 mission support</h2>
@@ -355,7 +381,7 @@ img {
 
   <section style="background:#03040F; padding: 0 24px 80px;">
     <div class="container" style="padding:0;">
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:18px;">
+      <div class="contact-grid-2">
         <div class="panel" style="transition: transform 0.4s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
           <div style="color:#C9933A; font-size:12px; text-transform:uppercase;">Booking Tip</div>
           <h2 style="font-size:30px; margin-top:8px;">Plan early for best launch windows</h2>

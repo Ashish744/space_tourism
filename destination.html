@@ -166,6 +166,19 @@
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px;
       overflow: hidden;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .dest-grid-3,
+    .dest-grid-2 {
+      display: grid;
+      gap: 18px;
+    }
+    .dest-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .dest-grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .image {
       height: 240px;
@@ -185,6 +198,10 @@
     footer { background: #0A0F25; padding: 48px 24px; color: #8B9CC8; }
     @media (max-width: 768px) {
       .grid { grid-template-columns: 1fr; }
+      .dest-grid-3,
+      .dest-grid-2 {
+        grid-template-columns: 1fr !important;
+      }
       nav { flex-wrap: wrap; gap: 10px; position: relative; }
       .nav-menu { display: none; }
       .nav-cta { display: none; }
@@ -280,7 +297,7 @@
 
   <section style="background:#0A0F25; padding: 0 24px 80px;">
     <div class="container" style="padding: 0;">
-      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;">
+      <div class="dest-grid-3">
         <article class="card" style="transition: transform 0.35s ease, box-shadow 0.35s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.38)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
           <div class="content">
             <div class="tag">Best For</div>
@@ -308,7 +325,7 @@
 
   <section style="background:linear-gradient(180deg, rgba(13,27,69,0.8), rgba(3,4,15,0.98)); padding: 0 24px 80px;">
     <div class="container" style="padding:0;">
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:18px;">
+      <div class="dest-grid-2">
         <div class="card" style="padding:24px; transition: transform 0.4s ease;" onmouseover="this.style.transform='translateY(-6px)'" onmouseout="this.style.transform='translateY(0)'">
           <div class="tag">Mission View</div>
           <h2 style="font-size:30px; margin-top:8px;">What travelers feel at the edge of space</h2>

@@ -156,7 +156,14 @@
     color: #fff;
     text-align: center;
     border-radius: 8px;
-    padding: 12px 0;
+    padding: 12px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(106, 61, 232, 0.24);
+    text-decoration: none;
   }
   .nav-toggle:checked ~ .mobile-menu {
     display: flex;
@@ -428,6 +435,8 @@
     border: none; border-radius: 4px; cursor: pointer;
     font-family: 'DM Sans', sans-serif; font-size: 14px;
     font-weight: 600; color: var(--void); letter-spacing: 0.06em;
+    display: inline-flex; align-items: center; justify-content: center;
+    text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .search-btn:hover {
