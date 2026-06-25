@@ -179,11 +179,25 @@
     @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } nav { flex-wrap: wrap; gap: 10px; } }
     @media (max-width: 600px) {
       .gallery { grid-template-columns: 1fr; }
-      nav { flex-wrap: wrap; gap: 10px; position: relative; }
-      .nav-links { display: none; }
-      .btn { display: none; }
-      .btn.mobile-cta { display: block !important; }
-      .nav-toggle-label { display: flex; }
+      nav {
+        padding: 16px 18px;
+        align-items: center;
+        position: relative;
+        gap: 12px;
+      }
+      .nav-menu { display: none; }
+      .nav-cta { display: none; }
+      .nav-logo-link { margin-right: auto; }
+      .nav-toggle-label { display: flex; margin-left: auto; }
+      .mobile-menu {
+        display: flex;
+        align-items: flex-start;
+        padding: 14px 18px 18px;
+      }
+      .mobile-menu a {
+        width: 100%;
+        padding: 10px 0;
+      }
       .container { padding: 60px 18px; }
       footer { padding: 32px 16px !important; }
       footer > div[style*="max-width"] {
