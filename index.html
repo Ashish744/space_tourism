@@ -1594,10 +1594,11 @@
     <span class="section-label">Stay in Orbit</span>
     <h2 class="section-title" style="font-size:clamp(36px,4vw,54px)">Mission Briefings &<br><em>Launch Alerts</em></h2>
     <p class="section-sub" style="margin:0 auto;text-align:center">Receive exclusive launch windows, early access to new destinations, and monthly dispatches from active missions.</p>
-    <div class="newsletter-form">
-      <input class="newsletter-input" type="email" placeholder="Enter your coordinates (email address)">
-      <button class="newsletter-submit">Transmit →</button>
-    </div>
+    <form id="newsletterForm" class="newsletter-form">
+      <input id="newsletterEmail" class="newsletter-input" type="email" name="email" placeholder="Enter your coordinates (email address)" required>
+      <button type="submit" class="newsletter-submit">Transmit →</button>
+    </form>
+    <p id="newsletterStatus" class="newsletter-note" style="display:none; margin-top:12px; color:#C9933A;">✓ Submitted</p>
     <p class="newsletter-note">No spam. Only signals worth receiving. Unsubscribe anytime.</p>
   </div>
 </section>
@@ -2062,6 +2063,31 @@ document.querySelectorAll('.btn-primary, .nav-cta, .search-btn, .newsletter-subm
     btn.style.transform = '';
   });
 });
+
+const newsletterForm = document.getElementById('newsletterForm');
+const newsletterEmail = document.getElementById('newsletterEmail');
+const newsletterStatus = document.getElementById('newsletterStatus');
+
+if (newsletterForm && newsletterEmail && newsletterStatus) {
+  newsletterForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const email = newsletterEmail.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      newsletterStatus.style.display = 'block';
+      newsletterStatus.textContent = 'Invalid email';
+      newsletterStatus.style.color = '#ff7b7b';
+      newsletterEmail.focus();
+      return;
+    }
+
+    newsletterStatus.style.display = 'block';
+    newsletterStatus.textContent = '✓ Submitted';
+    newsletterStatus.style.color = '#C9933A';
+    newsletterForm.reset();
+  });
+}
 
 function setActiveNav() {
   const currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
