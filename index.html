@@ -838,7 +838,7 @@
   }
   .newsletter-input::placeholder { color: var(--moonstone); }
   .newsletter-submit {
-    padding: 18px 36px; background: var(--violet); border: none;
+    padding: 18px 36px; background: var(--violet); border: none; border-radius: 10px;
     font-family: 'DM Sans', sans-serif; font-size: 14px;
     font-weight: 500; color: var(--starlight); cursor: pointer;
     letter-spacing: 0.06em; transition: background 0.3s ease;
@@ -1691,8 +1691,8 @@
         <p style="font-family:'Space Mono', monospace; font-size:10px; color:#C9933A; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:10px;">Stay updated</p>
         <p style="font-size:14px; color:#8B9CC8; line-height:1.6;">Get launch updates, mission news, and exclusive offers.</p>
         <form id="footerSignupForm" style="display:flex; gap:8px; margin-top:14px;">
-          <input id="footerSignupEmail" type="email" name="email" placeholder="Email address" required style="flex:1; background:#0A0F25; border:1px solid rgba(255,255,255,0.08); color:#E8EDFF; padding:12px 14px; border-radius:10px; outline:none;">
-          <button type="submit" style="background:linear-gradient(90deg, #6A3DE8, #8B5FF5); color:#fff; border:none; padding:0 16px; border-radius:10px; font-weight:600;">Go</button>
+          <input id="footerSignupEmail" class="newsletter-input" type="email" name="email" placeholder="Email address" required style="flex:1;">
+          <button type="submit" class="newsletter-submit">Go</button>
         </form>
         <div id="footerSignupSuccess" style="display:none; margin-top:12px; padding:12px 14px; border-radius:12px; background:rgba(106,61,232,0.15); color:#E8EDFF; font-size:14px; text-align:center;">✓ Submitted</div>
         <div id="footerSignupError" style="display:none; margin-top:12px; padding:12px 14px; border-radius:12px; background:rgba(232,59,59,0.15); color:#FF8A8A; font-size:14px; text-align:center;">Please enter a valid email address.</div>
