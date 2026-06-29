@@ -938,6 +938,34 @@
     border-radius: 10px;
     padding: 28px 24px;
     min-height: 220px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .experience-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at top left, rgba(106, 61, 232, 0.14), transparent 38%);
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    transform: scale(0.92);
+  }
+  .experience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 32px 70px rgba(106, 61, 232, 0.18);
+    border-color: rgba(106, 61, 232, 0.45);
+    background: linear-gradient(180deg, rgba(15,32,75,0.96), rgba(10,15,37,1));
+  }
+  .experience-card:hover::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .experience-card:hover h3,
+  .experience-card:hover p,
+  .experience-card:hover div[style*="font-family:'Space Mono'"] {
+    color: var(--starlight);
   }
   .faq-section { background: var(--void); padding: 120px 80px; }
   .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; }
