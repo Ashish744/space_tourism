@@ -135,6 +135,33 @@
       .login-card { padding: 32px 22px; }
       h1 { font-size: 34px; }
       .modal-card { padding: 24px 18px; }
+      footer {
+        padding: 50px 18px 32px !important;
+      }
+      footer > div:nth-of-type(2) {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+      footer > div:nth-of-type(2) > div {
+        width: 100% !important;
+      }
+      footer > div:last-of-type {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+      }
+      footer > div:last-of-type div {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      footer #footerSignupForm {
+        flex-direction: column !important;
+      }
+      footer #footerSignupForm input,
+      footer #footerSignupForm button {
+        width: 100% !important;
+      }
     }
   </style>
 </head>
@@ -154,7 +181,7 @@
         <input id="loginEmail" type="email" placeholder="you@example.com" required />
         <label for="loginPassword">Password</label>
         <div class="password-wrap">
-          <input id="loginPassword" type="password" placeholder="••••••••" required />
+          <input id="loginPassword" type="password" placeholder="••••••••" required minlength="8" />
           <button type="button" class="toggle-password" data-target="loginPassword">Show</button>
         </div>
         <button class="btn" type="submit">Login</button>
@@ -180,13 +207,13 @@
         <input id="phone" type="text" placeholder="+1 555 010 2048" required />
         <label for="signupPassword">Password</label>
         <div class="password-wrap">
-          <input id="signupPassword" type="password" placeholder="••••••••" required />
+          <input id="signupPassword" type="password" placeholder="••••••••" required minlength="8" />
           <button type="button" class="toggle-password" data-target="signupPassword">Show</button>
         </div>
         <div class="field-hint">Minimum 8 characters</div>
         <label for="confirmPassword">Confirm Password</label>
         <div class="password-wrap">
-          <input id="confirmPassword" type="password" placeholder="••••••••" required />
+          <input id="confirmPassword" type="password" placeholder="••••••••" required minlength="8" />
           <button type="button" class="toggle-password" data-target="confirmPassword">Show</button>
         </div>
         <button class="btn" type="submit">Create account</button>
@@ -215,6 +242,7 @@
           <li><a href="tourpackages.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Packages</a></li>
           <li><a href="gallery.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Gallery</a></li>
           <li><a href="about.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">About us</a></li>
+          <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -400,10 +428,17 @@
       e.preventDefault();
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
+      const loginPasswordInput = document.getElementById('loginPassword');
       if (!isValidEmail(email)) {
         const emailInput = document.getElementById('loginEmail');
         emailInput.setCustomValidity('Please enter a valid email address.');
         emailInput.reportValidity();
+        return;
+      }
+      if (password.length < 8) {
+        loginPasswordInput.setCustomValidity('Password must be at least 8 characters long.');
+        loginPasswordInput.reportValidity();
+        loginPasswordInput.focus();
         return;
       }
       if (email && password) {

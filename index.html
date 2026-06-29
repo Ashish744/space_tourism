@@ -150,6 +150,7 @@
     color: var(--moonstone);
     display: block;
     padding: 12px 0;
+    text-decoration: none;
   }
   .mobile-menu .mobile-cta {
     background: var(--violet);
@@ -1662,6 +1663,9 @@
         <li><a href="tourpackages.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Packages</a></li>
         <li><a href="gallery.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Gallery</a></li>
         <li><a href="about.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">About us</a></li>
+        <li><a href="contact.html" style="font-size:14px; color:#8B9CC8; text-decoration:none;">Contact</a></li>
+
+
       </ul>
     </div>
     <div>
@@ -1691,6 +1695,7 @@
           <button type="submit" style="background:linear-gradient(90deg, #6A3DE8, #8B5FF5); color:#fff; border:none; padding:0 16px; border-radius:10px; font-weight:600;">Go</button>
         </form>
         <div id="footerSignupSuccess" style="display:none; margin-top:12px; padding:12px 14px; border-radius:12px; background:rgba(106,61,232,0.15); color:#E8EDFF; font-size:14px; text-align:center;">✓ Submitted</div>
+        <div id="footerSignupError" style="display:none; margin-top:12px; padding:12px 14px; border-radius:12px; background:rgba(232,59,59,0.15); color:#FF8A8A; font-size:14px; text-align:center;">Please enter a valid email address.</div>
       </div>
     </div>
   </div>
@@ -1727,18 +1732,34 @@ document.querySelectorAll('a, button, .dest-card, .pkg-card, .gallery-item, .why
 function setupFooterSignup() {
   const footerForm = document.getElementById('footerSignupForm');
   const footerSuccess = document.getElementById('footerSignupSuccess');
-  if (!footerForm || !footerSuccess) return;
+  const footerError = document.getElementById('footerSignupError');
+  if (!footerForm || !footerSuccess || !footerError) return;
+  const emailInput = footerForm.querySelector('input[name="email"]');
+  if (!emailInput) return;
+
+  const showError = message => {
+    footerError.textContent = message;
+    footerError.style.display = 'block';
+    emailInput.style.borderColor = '#E85A5A';
+  };
+
+  const hideError = () => {
+    footerError.style.display = 'none';
+    emailInput.style.borderColor = 'rgba(255,255,255,0.08)';
+  };
+
+  emailInput.addEventListener('input', hideError);
+
   footerForm.addEventListener('submit', event => {
     event.preventDefault();
-    const emailInput = footerForm.querySelector('input[name="email"]');
-    if (!emailInput) return;
     const email = emailInput.value.trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      emailInput.reportValidity();
+      showError('Please enter a valid email address.');
       emailInput.focus();
       return;
     }
+    hideError();
     footerForm.style.display = 'none';
     footerSuccess.style.display = 'block';
     setTimeout(() => {
